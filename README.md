@@ -1,5 +1,5 @@
 # react-native-numeric-input
-a cross platform stylish numeric input for react native
+a cross platform stylish numeric input for react native, *used with kittenUI akveo*
 
 <h3 align="center"><b>Visual Demo</b></h3>
 <p align="center">
