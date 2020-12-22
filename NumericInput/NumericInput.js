@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { View, TextInput, StyleSheet, Text } from 'react-native'
-import Icon from 'react-native-vector-icons/Ionicons'
+// import Icon from 'react-native-vector-icons/Ionicons'
 import Button from '../Button'
 import PropTypes from 'prop-types'
 import { create, PREDEF_RES } from 'react-native-pixel-perfect'
+import { Icon } from '@ui-kitten/components';
 
 let calcSize = create(PREDEF_RES.iphone7.px)
 
@@ -215,6 +216,8 @@ export default class NumericInput extends Component {
             borderRightWidth: sepratorWidth,
             borderRightColor: borderColor
         }
+        const iconFillColor = this.props.iconFillColor
+
         if (this.props.type === 'up-down')
             return (
                 <View style={inputContainerStyle}>
@@ -231,13 +234,13 @@ export default class NumericInput extends Component {
         else return (
             <View style={inputContainerStyle}>
                 <Button onPress={this.dec} style={leftButtonStyle}>
-                    <Icon name='md-remove' size={fontSize} style={[...iconStyle, maxReached ? this.props.reachMaxDecIconStyle : {}, minReached ? this.props.reachMinDecIconStyle : {}]} />
+                    <Icon name='minus-outline' fill={iconFillColor} size={fontSize} style={[...iconStyle, {height:18,width:18}, maxReached ? this.props.reachMaxDecIconStyle : {}, minReached ? this.props.reachMinDecIconStyle : {}]} />
                 </Button>
                 <View style={[inputWraperStyle]}>
                     <TextInput {...this.props.extraTextInputProps} editable={editable} returnKeyType='done' underlineColorAndroid='rgba(0,0,0,0)' keyboardType='numeric' value={this.state.stringValue} onChangeText={this.onChange} style={inputStyle} ref={ref => this.ref = ref} onBlur={this.onBlur} onFocus={this.onFocus} />
                 </View>
                 <Button onPress={this.inc} style={rightButtonStyle}>
-                    <Icon name='md-add' size={fontSize} style={[...iconStyle, maxReached ? this.props.reachMaxIncIconStyle : {}, minReached ? this.props.reachMinIncIconStyle : {}]} />
+                    <Icon name='plus-outline' fill={iconFillColor} size={fontSize} style={[...iconStyle, {height:18,width:18},maxReached ? this.props.reachMaxIncIconStyle : {}, minReached ? this.props.reachMinIncIconStyle : {}]} />
                 </Button>
             </View>)
 
@@ -305,6 +308,7 @@ NumericInput.propTypes = {
     upDownButtonsBackgroundColor: PropTypes.string,
     rightButtonBackgroundColor: PropTypes.string,
     leftButtonBackgroundColor: PropTypes.string,
+    iconFillColor: PropTypes.string,
     editable: PropTypes.bool,
     reachMaxIncIconStyle: PropTypes.any,
     reachMaxDecIconStyle: PropTypes.any,
@@ -320,7 +324,7 @@ NumericInput.defaultProps = {
     sepratorWidth: 1,
     type: 'plus-minus',
     rounded: false,
-    textColor: 'black',
+    textColor: 'white',
     containerStyle: {},
     inputStyle: {},
     initValue: null,
@@ -332,6 +336,7 @@ NumericInput.defaultProps = {
     upDownButtonsBackgroundColor: 'white',
     rightButtonBackgroundColor: 'white',
     leftButtonBackgroundColor: 'white',
+    iconFillColor: 'black',
     editable: true,
     validateOnBlur: true,
     reachMaxIncIconStyle: {},
